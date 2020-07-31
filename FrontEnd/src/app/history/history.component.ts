@@ -46,7 +46,6 @@ export class HistoryComponent implements OnInit {
 
 	getTimeDaily(time) {
 		let dateConvert = new Date(time * 1000).toString();
-		//console.log(dateConvert)
 		dateConvert = dateConvert.slice(0, 11);
 		return dateConvert;
 	}
