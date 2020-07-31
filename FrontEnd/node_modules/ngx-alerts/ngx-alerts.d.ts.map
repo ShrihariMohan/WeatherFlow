@@ -1,0 +1,1 @@
+{"version":3,"file":"ngx-alerts.d.ts","sources":["ngx-alerts.d.ts"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA","sourcesContent":["/**\n * Generated bundle index. Do not edit.\n */\nexport * from './public_api';\nexport { ALERT_CONFIG as ɵa } from './lib/alert.config';\nexport { AlertComponent as ɵb } from './lib/component/alert.component';\n"]}

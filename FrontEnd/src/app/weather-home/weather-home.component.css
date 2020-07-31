@@ -1,0 +1,100 @@
+.card-container {
+  display: flex ;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.row {
+  display: flex ;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  margin: 5px 5px 5px 5px;
+  background-color: white;
+  
+  
+}
+
+.body {
+  margin-left: 20%;
+  margin-right: 20%;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  justify-content: center;  
+}
+.card-body {
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+       box-shadow: 0 8px 6px -6px black;
+  background: white;
+  padding-bottom: 5px;
+
+}
+
+.sun {
+  margin-top:5px ;
+  color : yellow ;
+  filter : drop-shadow(1px 1px 5px solid) ;
+}
+
+.moon {
+  margin-top:5px ;
+  color : rgb(194, 194, 194) ;
+  filter : drop-shadow(1px 1px 5px black) ;
+}
+
+.clouddiv {
+  margin-top: -30px ;
+
+}
+.clouds {
+ filter : drop-shadow(1px 1px 5px #2e99e0)  ;
+ color : #2e99e0 ;
+ animation-name: cloudMovement;
+ animation-duration: 10s;
+ animation-direction: alternate;
+ animation-timing-function: ease-in-out;
+ animation-iteration-count: infinite;
+}
+.quiet {
+  color: #9da0a1;
+  font-weight: 80;
+  font-size: 100%;
+}
+
+
+
+ @keyframes cloudMovement {
+  from {margin-left :-55px ; }
+  to { margin-right :-55px ;}
+ }
+
+ .close-icon  {
+  color :rgb(99, 98, 98) ;
+  cursor: pointer;
+
+ }
+
+.heart-icon {
+  cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 450px) {
+  .body {
+  margin-left:0%;
+  margin-right: 0%;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  display: block;
+
+  /* padding: 1.25rem; */
+  }
+}
+
+
+
+
+

@@ -1,0 +1,84 @@
+
+.body {
+    
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.card-container {
+  border-radius: 4px;
+
+}
+.whole {
+  object-fit: fill;
+  background-color:violet; 
+  background-image: linear-gradient(-90deg,#ad5389,#3c1053); 
+  
+}
+.card-body {
+    box-shadow:
+    0 2.8px 2.2px rgba(226, 221, 221, 0.034),
+    0 6.7px 5.3px rgba(230, 221, 221, 0.048),
+    0 12.5px 10px rgba(243, 236, 236, 0.06),
+    0 22.3px 17.9px rgba(231, 226, 226, 0.072),
+    0 41.8px 33.4px rgba(231, 228, 228, 0.086),
+    0 100px 80px rgba(61, 57, 57, 0.12);
+    background: white;
+    padding-bottom: 5px;
+ 
+    
+}
+
+  .card {
+  
+    margin: 10px;
+    }
+
+.details {
+text-align: left;
+}
+
+.designs {
+    font-weight: 650;
+    font-size: 140%;
+}
+
+/* .chartWrapper {
+    position: relative;
+   }
+   
+   .chartWrapper > canvas {
+     position: absolute;
+     left: 0;
+     top: 0;
+     pointer-events: none;
+   }
+   
+   .chartAreaWrapper {
+     width: 600px;
+     overflow-x: scroll;
+   } */
+
+.temp {
+  font-weight: 600;
+  font-size: xx-large;
+}
+
+.horizontal-rule {
+  border-top: 1px solid black;
+}
+
+.hourlyIcons {
+  color: #acaeb1;
+}
+
+.designsHour {
+  font-weight: 600;
+}
+
+
+
+.nav-link {
+  font-size:145% ;
+  font-weight: 650;
+  color: aliceblue;
+}

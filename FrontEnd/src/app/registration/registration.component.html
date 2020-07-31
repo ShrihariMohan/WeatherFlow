@@ -1,0 +1,54 @@
+<div class = "setBack">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h4 class="card-title text-center">Hi there , Welcome to WeatherFlow!</h4>
+
+<form #myform="ngForm" (ngSubmit)="registerUser()" class="form form-register">
+  <div class="form-label-group"  >
+    <label for="register-email">Email</label>
+    <input name="email" id="register-email" class="form-control" type="email" placeholder="example@mail.com" [(ngModel)]="user.mail" required #mail ="ngModel"
+    [class.is-invalid] = 'mail.invalid && mail.touched' pattern ="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" >
+  </div>
+
+  <div class="form-label-group"  >
+    <label for="username">Username</label>
+    <input name="username" id="register-name" class="form-control" type="text" placeholder="Name" [(ngModel)]="user.username" 
+    required #name ="ngModel" [class.is-invalid] = 'name.invalid && name.touched'>
+  </div>
+  <div class ="form-label-group" >
+    <label for="register-password">Password</label>
+    <input name="password" id="register-password" class="form-control" type="password" placeholder="Password"  [(ngModel)]="pass"
+    required #pwd ="ngModel" [class.is-invalid] = 'pwd.invalid && pwd.touched'>
+    <small id="passHelp" class="form-text text-muted">Min 8 characters.</small>
+ </div>
+
+ <div class ="form-label-group" >
+  <label for="register-password-confirm">Confirm Password</label>
+  <input name="confirmpassword" id="register-password-confrim" class="form-control" type="password" placeholder="Retype your Password" [(ngModel)]="cpass"
+  required #cpwd ="ngModel" [class.is-invalid] = 'cpwd.invalid && cpwd.touched' >
+  <small id="passHelp" class="form-text text-muted">Make Sure it is same.</small>
+
+  <small  class="form-text text-danger">{{msg}}</small>
+
+ </div>
+<br>
+ <div>
+  <button type="submit" class="btn btn-lg btn-outline-primary btn-block"  value="Register" [disabled]= "!myform.form.valid"> Register  </button>
+</div>
+</form>
+<hr class="my-4">
+
+<div class ="text-center">
+  Already Registered ? <a href="/login" style= "text-align: center;">Sign in here</a>
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
