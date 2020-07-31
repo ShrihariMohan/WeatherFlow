@@ -2,6 +2,12 @@
 > Login , Registration and Authentication for users to save favotite cities and ofcourse weather Information.
 > Angular Weather Angular-APP Javascript HTML CSS Java Spring-boot Spring-Security 
 
+## Features
+- Weather Widgets
+- Login , registration and Authentication
+- Add favourite Cities
+- Get Detailed Information about the city weather
+- Maps
 
 ## Contributing
 
