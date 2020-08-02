@@ -32,10 +32,8 @@ public getUserFromRemote(): Promise<any> {
     this.http.get (`http://localhost:9000/name`,{responseType: 'text'})
     .subscribe(data => {res(data) ,
      this.toastr.success(`Hello ${data.charAt(0).toUpperCase() + data.slice(1)}, You are successfully logged in` );}, 
-     err => {
-       rej(err);
-       this.toastr.warning('You are not logged in');
-      console.log("sorry") ;}) 
+       data => {rej(null) ;
+       console.log(data)}) 
 
   });
 }

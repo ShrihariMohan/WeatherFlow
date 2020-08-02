@@ -1,4 +1,3 @@
-import { SharingService } from './../sharing.service';
 import { FavCity } from './../fav-city';
 import { CityWeatherData } from './../city-weather-data';
 import { RegistrationService } from './../registration.service';
@@ -6,6 +5,8 @@ import { Weatherdata } from './../weatherdata';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 
 
@@ -35,11 +36,13 @@ export class WeatherHomeComponent implements OnInit {
   already:boolean = true ;
   
 
-  constructor( private service: RegistrationService , private sharing : SharingService ,
-    private route : Router ,private toastr: ToastrService) {
+  constructor( private service: RegistrationService  ,
+    private route : Router ,private toastr: ToastrService ,
+    private spinner: NgxSpinnerService) {
     }
 
   async ngOnInit() {
+    this.spinner.show()
     this.getLocation() ;
     this.username =  await this.service.getUserFromRemote();
 
@@ -71,6 +74,7 @@ export class WeatherHomeComponent implements OnInit {
         this.getWeather(city) ;
         });
         this.getFavourites();
+        
     }
     else {
       console.log('no navigation') ;
@@ -78,7 +82,7 @@ export class WeatherHomeComponent implements OnInit {
   }
   async getWeather(cityName : string , isFav : boolean = false){
     if ( cityName === null) return ;
-
+    this.spinner.show();
     const data = await this.service.getWeatherData(cityName)
     
       this.data = data ;
@@ -86,6 +90,7 @@ export class WeatherHomeComponent implements OnInit {
       this.data.isFav = isFav ;
       this.cityData[`${data.name}`] = this.data ;
       sessionStorage.setItem('citydata', JSON.stringify(this.cityData)) ;
+      this.spinner.hide();
 
     
   }

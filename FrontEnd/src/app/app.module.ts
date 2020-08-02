@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +15,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AlertModule } from 'ngx-alerts';
 import { ToastrModule } from 'ngx-toastr';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -42,8 +42,11 @@ import { ToastrModule } from 'ngx-toastr';
       maxOpened:1,
       closeButton:true
     }),
+    NgxSpinnerModule
     
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
   providers: [
     [
       { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }

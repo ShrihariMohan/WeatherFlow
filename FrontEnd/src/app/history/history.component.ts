@@ -3,6 +3,9 @@ import { RegistrationService } from './../registration.service';
 import { Weatherdata } from './../weatherdata';
 import { Component, OnInit} from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { NgxSpinnerService } from "ngx-spinner";
+
+
 @Component({
 	selector: 'app-history',
 	templateUrl: './history.component.html',
@@ -24,17 +27,22 @@ export class HistoryComponent implements OnInit {
 	iframe = 'anuglar 6'
   safeSrc: SafeResourceUrl;
 
-	constructor(private service: RegistrationService , private sanitizer: DomSanitizer) {
-		
+	constructor(private service: RegistrationService , private sanitizer: DomSanitizer,
+		private spinner: NgxSpinnerService) {
+			
 	}
 
 
 	ngOnInit(): void {
+		this.spinner.show();
+ 
+			
 		this.historyCity = JSON.parse(localStorage.getItem('HistoryCity'));
 		this.iframe = `https://www.ventusky.com/?p=${this.historyCity.coord.lat};${this.historyCity.coord.lon};2&l=humidity` ;
 		console.log(this.iframe)
 		this.safeSrc =  this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.ventusky.com/?p=${this.historyCity.coord.lat};${this.historyCity.coord.lon};5&l=pm25`);
 		this.getDatas();
+		
 	}
 
 	getTime(time) {
@@ -75,6 +83,9 @@ export class HistoryComponent implements OnInit {
 			dateConvert = dateConvert.slice(0, 4) + dateConvert.slice(17, 23);
 			time.push(dateConvert);
 		}
+		
+			this.spinner.hide();
+		 
 
 		//  this.getGraph(time , hourTemp) ;
 	}
