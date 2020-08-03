@@ -2,9 +2,6 @@
 > Login , Registration and Authentication for users to save favotite cities and ofcourse weather Information.
 > Angular Weather Angular-APP Javascript HTML CSS Java Spring-boot Spring-Security 
 
-## Login Page
-<img src ="https://drive.google.com/file/d/1DQuqNs5myFMjjY2ZuKBFC-REXwAGWfTc/view?usp=sharing" alt = "login Page"> 
-
 
 ## Features
 - Weather Widgets
@@ -12,6 +9,13 @@
 - Add favourite Cities
 - Get Detailed Information about the city weather
 - Maps
+
+
+## Login Page
+![](https://github.com/ShrihariMohan/WeatherFlow/blob/master/images/Login%20page.png?raw=true)
+
+## Registration Page
+![](https://github.com/ShrihariMohan/WeatherFlow/blob/master/images/Registratio%20page.png?raw=true)
 
 ## Contributing
 
