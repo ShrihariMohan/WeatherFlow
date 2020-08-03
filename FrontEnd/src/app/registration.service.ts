@@ -32,7 +32,7 @@ public getUserFromRemote(): Promise<any> {
     this.http.get (`http://localhost:9000/name`,{responseType: 'text'})
     .subscribe(data => {res(data) ,
      this.toastr.success(`Hello ${data.charAt(0).toUpperCase() + data.slice(1)}, You are successfully logged in` );}, 
-       data => {rej(null) ;
+       data => {rej("") ;
        console.log(data)}) 
 
   });
@@ -100,7 +100,7 @@ public getUserFromRemote(): Promise<any> {
     return new Promise((res, rej) => {
       this.http.delete (`http://localhost:9000/del/${id}` ,{responseType: 'text'})
       .subscribe(data => res(data) , 
-      data => rej(data.ok)) 
+      data => rej("false")) 
      
     });
   }
@@ -136,6 +136,7 @@ public getUserFromRemote(): Promise<any> {
       this.http.post (`http://localhost:9000/logout`,{responseType: 'text'})
       .subscribe(data => res(data)) ,
       err => {console.log(err );
+        rej("error") ;
        };
     });
 }
