@@ -15,7 +15,7 @@ export class RegistrationService {
   observe : Observable<any> ;
   key: String = '4b2e81ea2d43a4d97e231e3dd2496513' ;
   dt:number ;
-  username : string
+  username : string = "false"
   constructor(private http: HttpClient,private toastr: ToastrService ) { }
 
   public loginUserFromRemote(user: User): Promise<any> {
@@ -29,7 +29,7 @@ export class RegistrationService {
 
 public getUserFromRemote(): Promise<any> {
   return new Promise((res, rej) => {
-    this.http.get (`http://localhost:9000/name`,{responseType: 'text'})
+    this.http.get (`http://localhost:9000/name`,{responseType: 'text' })
     .subscribe(data => {res(data) ,
      this.toastr.success(`Hello ${data.charAt(0).toUpperCase() + data.slice(1)}, You are successfully logged in` );}, 
        data => {rej(data) ;

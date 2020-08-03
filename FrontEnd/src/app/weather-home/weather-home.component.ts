@@ -44,9 +44,13 @@ export class WeatherHomeComponent implements OnInit {
   async ngOnInit() {
     this.spinner.show()
     this.getLocation() ;
-    this.username =  await this.service.getUserFromRemote();
-
-
+    try {
+      this.username =  await this.service.getUserFromRemote();
+    }
+    catch (err) {
+      console.log('name error') ;
+      return ;
+    } 
     this.getFavourites() ;
 }
  
@@ -142,8 +146,15 @@ export class WeatherHomeComponent implements OnInit {
   }
 
   async getFavourites() {
-  const data = await this.service.getFavouritesFromRemote()
-  this.favCities = data ;
+    let data ;
+  try {
+     data = await this.service.getFavouritesFromRemote()
+  }
+  catch (err) {
+    console.log("fav error" ) ;
+    return ;
+  }
+    this.favCities = data ;
   console.log(data.length);
   if ( data.length === 0 && this.already) {
     this.toastr.warning("You don't have any favourites , to favorite one click on the heart ");

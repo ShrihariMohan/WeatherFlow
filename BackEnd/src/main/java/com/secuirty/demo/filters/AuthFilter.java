@@ -1,7 +1,6 @@
 package com.secuirty.demo.filters;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
@@ -59,9 +58,7 @@ public class AuthFilter implements Filter {
               userID = Integer.parseInt(request.getAttribute("userId").toString()) ;
               authenticated = true;
               Optional<User> options = service.FetchUserName(userID) ;
-              options.ifPresent(user ->{
-                  userName =  user.getUsername();
-              } );
+              options.ifPresent(user -> userName =  user.getUsername());
 
           }
         }
@@ -72,7 +69,7 @@ public class AuthFilter implements Filter {
 	        	  String path = req.getRequestURI();
 	              System.out.println("Is authenticated : " + authenticated);
 	
-	              ArrayList<String> excludeList = new ArrayList<String>(Arrays.asList("/login", "/new"));
+	              ArrayList<String> excludeList = new ArrayList<>(Arrays.asList("/login", "/new"));
 	            		  
 	              if (excludeList.contains(path) || authenticated) {
 	            	  filterchain.doFilter(request, response);
