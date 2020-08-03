@@ -32,7 +32,7 @@ public getUserFromRemote(): Promise<any> {
     this.http.get (`http://localhost:9000/name`,{responseType: 'text'})
     .subscribe(data => {res(data) ,
      this.toastr.success(`Hello ${data.charAt(0).toUpperCase() + data.slice(1)}, You are successfully logged in` );}, 
-       data => {rej("") ;
+       data => {rej(data) ;
        console.log(data)}) 
 
   });
@@ -114,7 +114,7 @@ public getUserFromRemote(): Promise<any> {
     console.log(time) ;
     return new Promise((res, rej) => {
       this.http.post (`http://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${lon}&dt=${time}&appid=${this.key}`,null)
-      .subscribe(data => res(data)) ,
+      .subscribe(data => res(null)) ,
       err => {console.log(err);
        };
     });

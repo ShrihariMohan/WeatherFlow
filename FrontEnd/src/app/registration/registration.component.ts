@@ -3,6 +3,7 @@ import { User } from '../user';
 import { RegistrationService } from '../registration.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-registration',
@@ -16,17 +17,19 @@ export class RegistrationComponent implements OnInit {
   cpass ;
   msg: string = ''
   constructor(private service:RegistrationService , private router: Router ,
-    private toastr: ToastrService ) { }
+    private toastr: ToastrService ,  private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
   }
 
   async registerUser() {
+    this.spinner.show() ;
     if (this.pass === this.cpass) {
       this.user.password = this.pass ;
     }
     else {
       this.toastr.error("Password doesn't match");
+      this.spinner.hide() ;
       return
     }   
      const data = await this.service.registerUserFromRemote(this.user);
@@ -39,6 +42,7 @@ export class RegistrationComponent implements OnInit {
         this.toastr.error("Something happened! please try again after some time");
         ;
       }
+      this.spinner.hide()
   }
 
   gotoLogin() {

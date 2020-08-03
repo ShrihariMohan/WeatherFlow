@@ -46,8 +46,6 @@ export class WeatherHomeComponent implements OnInit {
     this.getLocation() ;
     this.username =  await this.service.getUserFromRemote();
 
-    if ( this.username == null) return ;
-    this.cityData = JSON.parse(sessionStorage.getItem('citydaya'));
 
     this.getFavourites() ;
 }
@@ -89,7 +87,6 @@ export class WeatherHomeComponent implements OnInit {
       this.data.isDay = data.dt < data.sys.sunset ;
       this.data.isFav = isFav ;
       this.cityData[`${data.name}`] = this.data ;
-      sessionStorage.setItem('citydata', JSON.stringify(this.cityData)) ;
       this.spinner.hide();
 
     
@@ -124,6 +121,7 @@ export class WeatherHomeComponent implements OnInit {
   
 
   get cities(): Array<any> {
+    if ( this.cityData === undefined || this.cityData === null) return ;
     return Object.keys(this.cityData).map(key => this.cityData[key]) ;
   }
 

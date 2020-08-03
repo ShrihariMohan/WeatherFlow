@@ -89,7 +89,7 @@ public class AuthFilter implements Filter {
           res.setHeader("Access-Control-Allow-Methods", "POST,GET,DELETE,PUT");
           res.setHeader("Access-Control-Max-Age", "3600");
           res.setHeader("Access-Control-Allow-Headers", "Access-Control-Expose-Headers"+"Authorization, content-type," +
-          "USERID"+"ROLE"+
+          "USERID" + "ROLE"+
                   "access-control-request-headers,access-control-request-method,accept,origin,authorization,x-requested-with,responseType,observe");
           res.setStatus(HttpServletResponse.SC_OK);
       }

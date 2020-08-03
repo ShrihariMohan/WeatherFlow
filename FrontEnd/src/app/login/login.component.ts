@@ -1,9 +1,10 @@
-import { SharingService } from './../sharing.service';
 import { Component, OnInit} from '@angular/core';
 import { RegistrationService } from '../registration.service';
 import { User } from '../user';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from "ngx-spinner";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   msg = '' ;
   userID:number = null;
   constructor(private service:RegistrationService , private router: Router ,
-    private sharing: SharingService , private toaster : ToastrService) {
+     private toaster : ToastrService , private spinner: NgxSpinnerService) {
      ;
   }
 
@@ -24,10 +25,11 @@ export class LoginComponent implements OnInit {
 
   async loginUser() {
     console.log('i am here login') ;
+    this.spinner.show() ;
     const data = await this.service.loginUserFromRemote(this.user) ;
-    this.sharing.setUsername(data);
     if ( data )  this.router.navigate(['home']) ;
     else this.toaster.error("Inavlid Credentials Please try again");
+    this.spinner.hide()
 
   }
 
