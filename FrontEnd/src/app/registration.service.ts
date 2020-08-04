@@ -78,7 +78,8 @@ public getUserFromRemote(): Promise<any> {
     return new Promise((res, rej) => {
       this.http.get (`http://localhost:9000/fav/`) 
       .subscribe(data => res(data) , 
-      data => rej(data.ok)) 
+      data => {rej(data.ok);
+      console.log(data)}) 
      
     });
   }

@@ -157,7 +157,7 @@ export class WeatherHomeComponent implements OnInit {
     this.favCities = data ;
   console.log(data.length);
   if ( data.length === 0 && this.already) {
-    this.toastr.warning("You don't have any favourites , to favorite one click on the heart ");
+    this.toastr.warning("You don't have any favourites , to favorite one click on the fav icon ");
     this.already = false ;
     return;
   }
