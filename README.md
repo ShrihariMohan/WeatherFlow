@@ -17,6 +17,19 @@
 ## Registration Page
 ![](https://github.com/ShrihariMohan/WeatherFlow/blob/master/images/Registratio%20page.png?raw=true)
 
+## Home Page
+![](https://github.com/ShrihariMohan/WeatherFlow/blob/master/images/Landing%20page.png?raw=true)
+
+## More Info Page
+![](https://github.com/ShrihariMohan/WeatherFlow/blob/master/images/moreInfo1.png?raw=true)
+![](https://github.com/ShrihariMohan/WeatherFlow/blob/master/images/moreInfo2.png?raw=true)
+
+
+## NGX Packeges Used
+- ngx-spinner
+- ngx-toastr
+- ngx-pagination
+
 ## Contributing
 
 > To get started...
