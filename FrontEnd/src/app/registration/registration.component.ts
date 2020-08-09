@@ -31,9 +31,10 @@ export class RegistrationComponent implements OnInit {
       this.toastr.error("Password doesn't match");
       this.spinner.hide() ;
       return
-    }   
-     const data = await this.service.registerUserFromRemote(this.user);
-    
+    } 
+    this.spinner.show() ;  
+    const data = await this.service.registerUserFromRemote(this.user);
+    this.spinner.hide();
       if (data == "OK") {console.log("yes") ;
       this.router.navigate(['login']);
     }

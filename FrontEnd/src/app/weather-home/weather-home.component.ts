@@ -46,6 +46,7 @@ export class WeatherHomeComponent implements OnInit {
     this.getLocation() ;
     try {
       this.username =  await this.service.getUserFromRemote();
+      this.username = (this.username).slice(0,1).toUpperCase() + this.username.slice(1) ;
     }
     catch (err) {
       console.log('name error') ;

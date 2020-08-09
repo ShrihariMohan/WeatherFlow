@@ -28,6 +28,7 @@ export class RegistrationService {
 }
 
 public getUserFromRemote(): Promise<any> {
+  try {
   return new Promise((res, rej) => {
     this.http.get (`http://localhost:9000/name`,{responseType: 'text' })
     .subscribe(data => {res(data) ,
@@ -36,6 +37,11 @@ public getUserFromRemote(): Promise<any> {
        console.log(data)}) 
 
   });
+  }
+  catch {
+    console.log("hello i am error") ;
+    return ;
+  }
 }
 
 
