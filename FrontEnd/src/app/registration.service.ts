@@ -56,6 +56,10 @@ public getUserFromRemote(): Promise<any> {
   }
   
 
+
+
+
+
  
   public getWeatherData(city: String): Promise<any> {
     //return this.http.post('http://localhost:9000/new', user,{responseType: 'text'}) ;
