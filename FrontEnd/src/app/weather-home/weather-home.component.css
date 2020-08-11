@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   border-radius: 4px;
+  margin-top: 3px;
 }
 
 .row {
@@ -28,9 +29,16 @@
   -webkit-box-shadow: 0 8px 6px -6px black;
   -moz-box-shadow: 0 8px 6px -6px black;
        box-shadow: 0 8px 6px -6px black;
+  transition: transform 0.2s ;
   background: white;
   padding-bottom: 5px;
 
+}
+
+.card-body:hover {
+    transform: scale(1.06) ;
+    padding-bottom: 5px;
+    margin-top: 3px;
 }
 
 .sun {

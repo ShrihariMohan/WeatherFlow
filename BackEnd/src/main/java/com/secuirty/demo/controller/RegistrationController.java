@@ -45,6 +45,7 @@ public class RegistrationController {
 		String tempEmail = user.getmail();
 		if ( tempEmail != null && !tempEmail.equals("")) {
 			User userObj = service.FetchUserByEmailId(tempEmail) ;
+
 			if ( userObj != null) {
 				throw new Exception("User With "+ tempEmail+ " is already Registered") ;
 			}

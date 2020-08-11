@@ -89,6 +89,7 @@ export class WeatherHomeComponent implements OnInit {
     const data = await this.service.getWeatherData(cityName)
     
       this.data = data ;
+      console.log(data);
       this.data.isDay = data.dt < data.sys.sunset ;
       this.data.isFav = isFav ;
       this.cityData[`${data.name}`] = this.data ;
