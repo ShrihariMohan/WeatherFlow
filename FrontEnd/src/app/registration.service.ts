@@ -22,7 +22,7 @@ export class RegistrationService {
     return new Promise((res, rej) => {
       this.http.post (`http://localhost:9000/login`,user,{responseType: 'text'})
       .subscribe(data => res(data)) ,
-      err => {console.log(err + 'hello');
+      err => {//console.log(err + 'hello');
        };
     });
 }
@@ -33,8 +33,8 @@ public getUserFromRemote(): Promise<any> {
     this.http.get (`http://localhost:9000/name`,{responseType: 'text' })
     .subscribe(data => {res(data) ,
      this.toastr.success(`Hello ${data.charAt(0).toUpperCase() + data.slice(1)}, You are successfully logged in` );}, 
-       data => {rej(data) ;
-       console.log(data)}) 
+       data => {rej(data) ; 
+       console.log('')}) 
 
   });
   }
@@ -146,7 +146,7 @@ public getUserFromRemote(): Promise<any> {
     return new Promise((res, rej) => {
       this.http.post (`http://localhost:9000/logout`,{responseType: 'text'})
       .subscribe(data => res(data)) ,
-      err => {console.log(err );
+      err => { //console.log(err );
         rej("error") ;
        };
     });

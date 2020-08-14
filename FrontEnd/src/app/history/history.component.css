@@ -4,6 +4,9 @@
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+div.row {
+  margin-right : 0px ;
+}
 .card-container {
   border-radius: 4px;
 
@@ -11,19 +14,12 @@
 .whole {
   object-fit: fill;
   background-color:violet; 
-  background-image: linear-gradient(-90deg,#ad5389,#3c1053); 
-  
+  background-color: #f5f7fa;
 }
 .card-body {
-    box-shadow:
-    0 2.8px 2.2px rgba(226, 221, 221, 0.034),
-    0 6.7px 5.3px rgba(230, 221, 221, 0.048),
-    0 12.5px 10px rgba(243, 236, 236, 0.06),
-    0 22.3px 17.9px rgba(231, 226, 226, 0.072),
-    0 41.8px 33.4px rgba(231, 228, 228, 0.086),
-    0 100px 80px rgba(61, 57, 57, 0.12);
-    background: white;
-    padding-bottom: 5px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+  background: white;
+  padding-bottom: 5px;
  
     
 }
@@ -42,21 +38,7 @@ text-align: left;
     font-size: 140%;
 }
 
-/* .chartWrapper {
-    position: relative;
-   }
-   
-   .chartWrapper > canvas {
-     position: absolute;
-     left: 0;
-     top: 0;
-     pointer-events: none;
-   }
-   
-   .chartAreaWrapper {
-     width: 600px;
-     overflow-x: scroll;
-   } */
+
 
 .temp {
   font-weight: 600;

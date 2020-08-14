@@ -25,7 +25,7 @@ export class HistoryComponent implements OnInit {
 	page = 1;
 	cityName: String;
 	iframe = 'anuglar 6'
-  safeSrc: SafeResourceUrl;
+  	safeSrc: SafeResourceUrl;
 
 	constructor(private service: RegistrationService , private sanitizer: DomSanitizer,
 		private spinner: NgxSpinnerService) {
