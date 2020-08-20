@@ -1,9 +1,10 @@
-import { FavCity } from './fav-city';
+import { FavCity } from '../../POJO/favCity/fav-city';
 import { Injectable } from '@angular/core';
-import {User} from './user' ;
-import { Observable } from 'rxjs';
+import { User } from '../../POJO/user/user' ;
+import { Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+
 
 
 @Injectable({
@@ -13,9 +14,7 @@ export class RegistrationService {
 
   userID : number = 0;
   observe : Observable<any> ;
-  key: String = '4b2e81ea2d43a4d97e231e3dd2496513' ;
   dt:number ;
-  username : string = "false"
   constructor(private http: HttpClient,private toastr: ToastrService ) { }
 
   public loginUserFromRemote(user: User): Promise<any> {
@@ -31,10 +30,13 @@ public getUserFromRemote(): Promise<any> {
   try {
   return new Promise((res, rej) => {
     this.http.get (`http://localhost:9000/name`,{responseType: 'text' })
-    .subscribe(data => {res(data) ,
+    .subscribe(data => {
+      if ( data == "false")
+      res(data) ;
      this.toastr.success(`Hello ${data.charAt(0).toUpperCase() + data.slice(1)}, You are successfully logged in` );}, 
-       data => {rej(data) ; 
-       console.log('')}) 
+       (data : Error) => {; 
+       console.log('') ;
+       rej(data) }) 
 
   });
   }
@@ -55,34 +57,6 @@ public getUserFromRemote(): Promise<any> {
     });
   }
   
-
-
-
-
-
- 
-  public getWeatherData(city: String): Promise<any> {
-    //return this.http.post('http://localhost:9000/new', user,{responseType: 'text'}) ;
-    return new Promise((res, rej) => {
-      this.http.post (`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.key}`,null)
-      .subscribe(data => res(data) , 
-      data => rej(data.ok)) 
-     
-    });
-  }
-
-  public getCityByCoords( lat: number , lon: number): Promise<any> {
-    //return this.http.post('http://localhost:9000/new', user,{responseType: 'text'}) ;
-    return new Promise((res, rej) => {
-      this.http.post (`https://us1.locationiq.com/v1/reverse.php?key=bd319758969d15&lat=${lat}&lon=${lon}&format=json`, null)
-      .subscribe(data => res(data) , 
-      data => rej(data.ok)) 
-     
-    });
-  }
-
- 
-
   public getFavouritesFromRemote ( ): Promise<any> {
     //return this.http.post('http://localhost:9000/new', user,{responseType: 'text'}) ;
     return new Promise((res, rej) => {
@@ -117,30 +91,9 @@ public getUserFromRemote(): Promise<any> {
   }
 
 
-  public getWeatherMaps () : Observable<any> {
-    return this.http.post(`https://tile.openweathermap.org/map/clouds_new/3/3/3.png?appid=${this.key}`,null) ;
-  }
+ 
 
-  public getHistory ( lat:number , lon:number ,time:number) : Promise<any> {
-    console.log(time) ;
-    return new Promise((res, rej) => {
-      this.http.post (`http://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${lon}&dt=${time}&appid=${this.key}`,null)
-      .subscribe(data => res(null)) ,
-      err => {console.log(err);
-       };
-    });
-  }
 
-  public getThings (lat:number , lon:number ) : Promise<any> {
-    
-    return new Promise((res, rej) => {
-      this.http.post (`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&
-      exclude=hourly,daily&appid=${this.key}`,null)
-      .subscribe(data => res(data)) ,
-      err => {console.log(err);
-       };
-    });
-  }
 
   public logOutUserFromRemote( ): Promise<any> {
     return new Promise((res, rej) => {

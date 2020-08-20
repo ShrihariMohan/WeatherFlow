@@ -1,11 +1,12 @@
-import { FavCity } from './../fav-city';
-import { CityWeatherData } from './../city-weather-data';
-import { RegistrationService } from './../registration.service';
-import { Weatherdata } from './../weatherdata';
+import { FavCity } from './../../POJO/favCity/fav-city';
+import { CityWeatherData } from './../../POJO/CityWeatherData/city-weather-data';
+import { RegistrationService } from './../../services/registration/registration.service';
+import { Weatherdata } from './../../POJO/weatherData/weatherdata';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from "ngx-spinner";
+import { WeatherService } from './../../services/weather/weather.service';
 
 
 
@@ -38,7 +39,8 @@ export class WeatherHomeComponent implements OnInit {
 
   constructor(private service: RegistrationService,
     private route: Router, private toastr: ToastrService,
-    private spinner: NgxSpinnerService) {
+    private spinner: NgxSpinnerService , 
+    private weatherService : WeatherService) {
   }
 
   async ngOnInit() {
@@ -46,6 +48,7 @@ export class WeatherHomeComponent implements OnInit {
     this.getLocation();
     try {
       this.username = await this.service.getUserFromRemote();
+      if ( this.username == "false") return ;
       this.username = (this.username).slice(0, 1).toUpperCase() + this.username.slice(1);
     }
     catch (err) {
@@ -65,7 +68,7 @@ export class WeatherHomeComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(async (position) => {
         this.lat = position.coords.latitude;
         this.lon = position.coords.longitude;
-        const data = await this.service.getCityByCoords(this.lat, this.lon);
+        const data = await this.weatherService.getCityByCoords(this.lat, this.lon);
 
         // console.log(res) ;
         this.temp = data;
@@ -99,14 +102,24 @@ export class WeatherHomeComponent implements OnInit {
   async getWeather(cityName: string, isFav: boolean = false) {
     if (cityName === null) return;
     this.spinner.show();
-    const data = await this.service.getWeatherData(cityName)
-
-    this.data = data;
-    console.log(data);
+    try {
+    const data = await this.weatherService.getWeatherData(cityName);
+    this.data = data ;
     this.data.isDay = data.dt < data.sys.sunset;
     this.data.isFav = isFav;
     this.cityData[`${data.name}`] = this.data;
     this.spinner.hide();
+
+
+    }
+    catch ( err) {
+      this.spinner.hide();
+      return ;
+    }
+
+    console.log('after search');
+        
+   
 
 
   }
@@ -116,17 +129,14 @@ export class WeatherHomeComponent implements OnInit {
   }
 
   async removeCityFromFavs(name: string) {
-    //console.log(this.favCities) ;
     for (let i = 0; i < Object.keys(this.favCities).length; i += 1) {
-      //this.getWeather(element.city) ;
       let temp: string = this.favCities[i].city;
       if (temp === null) continue;
       if (temp.toLowerCase() === name.toLowerCase()) {
         let id: number = (this.favCities)[i].id
         const data = await this.service.deleteCityFromRemote(id);
         this.cityData[`${name}`].isFav = false;
-        if (data === "deleted")
-          this.toastr.success("Removed from favourites!");
+        if (data === "deleted") this.toastr.success("Removed from favourites!");
         else this.toastr.error("Sorry some error has occurred refresh the page and try again!");
 
         this.getFavourites();
@@ -162,6 +172,7 @@ export class WeatherHomeComponent implements OnInit {
 
   async getFavourites() {
     let data;
+    if ( this.username == "false") return
     try {
       data = await this.service.getFavouritesFromRemote()
     }

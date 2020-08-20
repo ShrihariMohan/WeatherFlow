@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user';
-import { RegistrationService } from '../registration.service';
+import { User } from '../../POJO/user/user';
+import { RegistrationService } from '../../services/registration/registration.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from "ngx-spinner";

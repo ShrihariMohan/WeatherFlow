@@ -1,9 +1,10 @@
-import { HistoryData } from './../history-data';
-import { RegistrationService } from './../registration.service';
-import { Weatherdata } from './../weatherdata';
+import { HistoryData } from '../../POJO/historyData/history-data';
+import { Weatherdata } from '../../POJO/weatherData/weatherdata';
 import { Component, OnInit} from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { NgxSpinnerService } from "ngx-spinner";
+import { WeatherService } from './../../services/weather/weather.service';
+
 
 
 @Component({
@@ -27,7 +28,7 @@ export class HistoryComponent implements OnInit {
 	iframe = 'anuglar 6'
   	safeSrc: SafeResourceUrl;
 
-	constructor(private service: RegistrationService , private sanitizer: DomSanitizer,
+	constructor(private service: WeatherService , private sanitizer: DomSanitizer,
 		private spinner: NgxSpinnerService) {
 			
 	}
@@ -39,7 +40,6 @@ export class HistoryComponent implements OnInit {
 			
 		this.historyCity = JSON.parse(localStorage.getItem('HistoryCity'));
 		this.iframe = `https://www.ventusky.com/?p=${this.historyCity.coord.lat};${this.historyCity.coord.lon};2&l=humidity` ;
-		console.log(this.iframe)
 		this.safeSrc =  this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.ventusky.com/?p=${this.historyCity.coord.lat};${this.historyCity.coord.lon};5&l=pm25`);
 		this.getDatas();
 		
@@ -48,8 +48,13 @@ export class HistoryComponent implements OnInit {
 	getTime(time) {
 		let dateConvert = new Date(time * 1000).toString();
 		//console.log(dateConvert)
-		dateConvert = dateConvert.slice(0, 4) + dateConvert.slice(17, 23);
+		dateConvert = dateConvert.slice(0, 4) + dateConvert.slice(16, 21);
 		return dateConvert;
+	}
+
+	getSunTime(time) {
+		let dateConvert = new Date(time * 1000).toString();
+		return dateConvert.slice(16, 21);
 	}
 
 	getTimeDaily(time) {
@@ -70,7 +75,6 @@ export class HistoryComponent implements OnInit {
 		this.totalHistoryData.hourly = data.hourly;
 
 		this.totalHistoryData.daily = data.daily;
-		console.log(this.historyCity);
 		let dateConvert: string;
 
 		let time: any[] = [],
@@ -83,6 +87,7 @@ export class HistoryComponent implements OnInit {
 			dateConvert = dateConvert.slice(0, 4) + dateConvert.slice(17, 23);
 			time.push(dateConvert);
 		}
+		console.log(this.totalHistoryData.hourly)
 		
 			this.spinner.hide();
 		 
@@ -92,7 +97,6 @@ export class HistoryComponent implements OnInit {
 
 	more() {
 		localStorage.setItem('hourly', JSON.stringify(this.totalHistoryData.hourly));
-		console.log('MORE', this.totalHistoryData.hourly);
 	}
 
 

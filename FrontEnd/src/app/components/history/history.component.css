@@ -5,7 +5,7 @@
 }
 
 div.row {
-  margin-right : 0px ;
+  margin : 0px ;
 }
 .card-container {
   border-radius: 4px;
@@ -20,17 +20,15 @@ div.row {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
   background: white;
   padding-bottom: 5px;
- 
-    
+  transition: transform 0.2s ;
 }
 
-  .card {
-  
-    margin: 10px;
-    }
+.card {
+  margin: 10px;
+  }
 
 .details {
-text-align: left;
+text-align: center;
 }
 
 .designs {
@@ -58,9 +56,12 @@ text-align: left;
 }
 
 
-
 .nav-link {
   font-size:145% ;
   font-weight: 650;
   color: aliceblue;
+}
+
+.card-body:hover {
+  transform: scale(1.02);
 }

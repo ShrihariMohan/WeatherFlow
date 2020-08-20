@@ -2,15 +2,15 @@
 
   
 
-  <nav class="navbar navbar-expand-md navbar-light sticky-top" style="background-color: #f5f7fa;" >
+  <nav class="navbar navbar-expand-md navbar-light sticky-top" style="background-color: #f5f7fa; " >
     <a class="navbar-brand nav-link" style="color:#ad5389" href="/home">WeatherFlow</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul  class="mr-auto navbar-nav navbar-center ">      
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+      <ul  class="mr-auto navbar-nav navbar-center"  >      
       <li class="nav-item active">
         <a class="nav-link" style="color: black;" href="history#now">Now <span class="sr-only">(current)</span></a>
       </li>
@@ -41,19 +41,21 @@
                  {{totalHistoryData.weather['description']}}
               </span> </h5>
             <div style="display: flex;
-              justify-content: space-between;">
+              justify-content: space-around;">
               <div>
                 <span>
-                  <span class="temp card-text">{{(totalHistoryData.current['feels_like']-273.15).toFixed(2)}}°C
+                  <span class="temp card-text">{{(totalHistoryData.current['feels_like']-273.15).toFixed(2) }}°C
                   </span> <br>
                   Feels Like
                 </span>
               </div>
               <div>
-                <span>
-                  <span class="temp card-text">{{(totalHistoryData.current['feels_like']-273.15).toFixed(2)}}°C
+                <span >
+                  <div class="card-text" style="font-size: 150%;"> <i class="fas fa-sun"></i>  {{getSunTime(historyCity['sys'].sunrise) }} 
+                  </div>
+                  <span class="card-text" style="font-size: 150%;"><i class="far fa-sun"></i>  {{getSunTime(historyCity['sys'].sunset) }} 
                   </span> <br>
-                  Feels Like
+          
                 </span>
               </div>
             </div>
@@ -214,7 +216,7 @@
     <iframe class = "col-12 col-sm -12 col-md-7" width="520"
     height="316"    [src] = "safeSrc" title="description"
     frameborder="0" webkitallowfullscreen mozallowfullscreen
-      allowfullscreen> Hello there</iframe>
+      allowfullscreen></iframe>
 
   </div> 
 
