@@ -1,42 +1,46 @@
+.body {    
+  font-family: -apple-system, 
+                BlinkMacSystemFont, 
+                sans-serif;
+}
 
-.body {
-    
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+.whole {
+  object-fit: fill;
+  background-color: #f5f7fa;
 }
 
 div.row {
   margin : 0px ;
 }
+
 .card-container {
   border-radius: 4px;
+}
 
-}
-.whole {
-  object-fit: fill;
-  background-color:violet; 
-  background-color: #f5f7fa;
-}
 .card-body {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+              0 5px 5px rgba(0, 0, 0, 0.22);
   background: white;
   padding-bottom: 5px;
   transition: transform 0.2s ;
 }
 
+.card-body:hover {
+  transform: scale(1.02);
+}
+
 .card {
   margin: 10px;
-  }
+}
 
 .details {
-text-align: center;
+  text-align: center;
 }
 
 .designs {
-    font-weight: 650;
-    font-size: 140%;
+  font-weight: 650;
+  font-size: 140%;
 }
-
-
 
 .temp {
   font-weight: 600;
@@ -55,13 +59,8 @@ text-align: center;
   font-weight: 600;
 }
 
-
 .nav-link {
   font-size:145% ;
   font-weight: 650;
   color: aliceblue;
-}
-
-.card-body:hover {
-  transform: scale(1.02);
 }

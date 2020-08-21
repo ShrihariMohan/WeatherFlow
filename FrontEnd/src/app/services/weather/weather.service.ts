@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Observable} from 'rxjs';
+
 import { ToastrService } from 'ngx-toastr';
-
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -48,8 +45,6 @@ export class WeatherService {
     });
   }
 
- 
-
   public getCityByCoords( lat: number , lon: number): Promise<any> {
     return new Promise((res, rej) => {
       this.http.post (`https://us1.locationiq.com/v1/reverse.php?key=bd319758969d15&lat=${lat}&lon=${lon}&format=json`, null)
@@ -58,4 +53,5 @@ export class WeatherService {
      
     });
   }
+  
 }

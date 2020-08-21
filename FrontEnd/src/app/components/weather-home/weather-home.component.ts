@@ -1,16 +1,14 @@
-import { FavCity } from './../../POJO/favCity/fav-city';
-import { CityWeatherData } from './../../POJO/CityWeatherData/city-weather-data';
-import { RegistrationService } from './../../services/registration/registration.service';
-import { Weatherdata } from './../../POJO/weatherData/weatherdata';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { NgxSpinnerService } from "ngx-spinner";
+
+import { FavCity } from './../../POJO/favCity/fav-city';
+import { CityWeatherData } from './../../POJO/CityWeatherData/city-weather-data';
+import { Weatherdata } from './../../POJO/weatherData/weatherdata';
+import { RegistrationService } from './../../services/registration/registration.service';
 import { WeatherService } from './../../services/weather/weather.service';
 
-
-
-
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-weather-home',
@@ -23,7 +21,7 @@ export class WeatherHomeComponent implements OnInit {
   data = new Weatherdata();
   temp: any;
   cityData = new CityWeatherData();
-  dataKeys: object = Object.keys(this.cityData);
+  dataKeys: Object = Object.keys(this.cityData);
   lat: number;
   lon: number;
   username: string = null;
@@ -52,28 +50,20 @@ export class WeatherHomeComponent implements OnInit {
       this.username = (this.username).slice(0, 1).toUpperCase() + this.username.slice(1);
     }
     catch (err) {
-      //console.log('name error') ;
       return;
     }
     this.getFavourites();
   }
 
-
-
-
-
   async getLocation() {
     if ('geolocation' in navigator) {
-
       navigator.geolocation.getCurrentPosition(async (position) => {
         this.lat = position.coords.latitude;
         this.lon = position.coords.longitude;
         const data = await this.weatherService.getCityByCoords(this.lat, this.lon);
-
-        // console.log(res) ;
         this.temp = data;
         let city: string;
-        //console.log(this.temp.address.city);
+
         city = this.temp.address.city;
         if (this.alreadyCityExist(city)) return;
         if (city == undefined) return;
@@ -97,8 +87,8 @@ export class WeatherHomeComponent implements OnInit {
       this.getFavourites();
 
     }
+ }
 
-  }
   async getWeather(cityName: string, isFav: boolean = false) {
     if (cityName === null) return;
     this.spinner.show();
@@ -109,19 +99,11 @@ export class WeatherHomeComponent implements OnInit {
     this.data.isFav = isFav;
     this.cityData[`${data.name}`] = this.data;
     this.spinner.hide();
-
-
-    }
+  }
     catch ( err) {
       this.spinner.hide();
       return ;
     }
-
-    console.log('after search');
-        
-   
-
-
   }
 
   closeTheCity(name: string) {
@@ -144,10 +126,6 @@ export class WeatherHomeComponent implements OnInit {
       }
     }
   }
-  //this.cityData[`${name}`]
-  //delete this.cityData[`${name}`] ;
-  //localStorage.setItem('cityData', JSON.stringify(this.cityData)) ;
-
 
   get cities(): Array<any> {
     if (this.cityData === undefined || this.cityData === null) return;
@@ -160,45 +138,36 @@ export class WeatherHomeComponent implements OnInit {
       this.toastr.error("Cannot add to favourites , Please Log in !");
       return;
     }
-    if (this.alreadyCityExist(cityName)) return
+    if (this.alreadyCityExist(cityName)) return;
     this.favCity.city = cityName;
     const data = await this.service.saveFavCityFromRemote(this.favCity)
     console.log(data);
     this.cityData[`${cityName}`].isFav = true;
     this.toastr.success("Added to Favourites!");
     this.getFavourites();
-
-  }
+}
 
   async getFavourites() {
     let data;
-    if ( this.username == "false") return
+    if ( this.username == "false") return;
     try {
       data = await this.service.getFavouritesFromRemote()
     }
     catch (err) {
-      //console.log("fav error" ) ;
       return;
     }
     this.favCities = data;
-    console.log(data.length);
-    if (data.length === 0 && this.already) {
+    if (data.length === 0 || this.already) {
       this.toastr.warning("You don't have any favourites , to favorite one click on the fav icon ");
       this.already = false;
       return;
     }
-    if (data.length === 0) {
-      return;
-    }
-    if (this.favCities != undefined && (this.favCities)[0].city !== undefined)
-      this.favCitiesForDisplay();
-
-
+    if (this.favCities != undefined && (this.favCities)[0].city !== undefined) this.favCitiesForDisplay();
 
   }
+
   favCitiesForDisplay() {
     for (let i = 0; i < Object.keys(this.favCities).length; i += 1) {
-      //this.getWeather(element.city) ;
       this.getWeather((this.favCities)[i].city, true);
     };
   }
@@ -209,10 +178,7 @@ export class WeatherHomeComponent implements OnInit {
   }
 
   alreadyCityExist(city: string): boolean {
-    // console.log(Object.keys(this.favCities).length)
     for (let i = 0; i < Object.keys(this.favCities).length; i += 1) {
-      //this.getWeather(element.city) ;
-      // console.log(this.favCities)
       if (this.favCities == null) return;
       if (this.favCities[i].city !== null && city.toLowerCase() === (this.favCities[i].city).toLowerCase()) {
         console.log(`Already added city ${city}`);
@@ -222,22 +188,10 @@ export class WeatherHomeComponent implements OnInit {
   }
 
   async logOut() {
-    console.log("SuccesFully  LoGGed Out");
-
     const data = await this.service.logOutUserFromRemote();
-    if (data.slice(0, 2) === "OK") {
-      console.log("SuccesFully  LoGGed Out" + data);
-
-
-
-    }
-    else {
-      console.log("error");
-      console.log(data);
-    }
+    if (data.slice(0, 2) === "OK") this.route.navigate['home'] ;
+    else this.toastr.warning('Something Happened ! Try again Later');
   }
-
-
 
 }
 

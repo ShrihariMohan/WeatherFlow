@@ -19,8 +19,6 @@ export class HistoryComponent implements OnInit {
 	totalHistoryData = new HistoryData();
 	iconLink: string;
 	name = 'Angular   6';
-	canvas: any;
-	ctx: any;
 	hourlyDisplay: any;
 	p: number = 1;
 	page = 1;
@@ -36,9 +34,7 @@ export class HistoryComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.spinner.show();
- 
-			
-		this.historyCity = JSON.parse(localStorage.getItem('HistoryCity'));
+ 		this.historyCity = JSON.parse(localStorage.getItem('HistoryCity'));
 		this.iframe = `https://www.ventusky.com/?p=${this.historyCity.coord.lat};${this.historyCity.coord.lon};2&l=humidity` ;
 		this.safeSrc =  this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.ventusky.com/?p=${this.historyCity.coord.lat};${this.historyCity.coord.lon};5&l=pm25`);
 		this.getDatas();
@@ -47,9 +43,7 @@ export class HistoryComponent implements OnInit {
 
 	getTime(time) {
 		let dateConvert = new Date(time * 1000).toString();
-		//console.log(dateConvert)
-		dateConvert = dateConvert.slice(0, 4) + dateConvert.slice(16, 21);
-		return dateConvert;
+		return dateConvert.slice(0, 4) + dateConvert.slice(16, 21);
 	}
 
 	getSunTime(time) {
@@ -59,8 +53,7 @@ export class HistoryComponent implements OnInit {
 
 	getTimeDaily(time) {
 		let dateConvert = new Date(time * 1000).toString();
-		dateConvert = dateConvert.slice(0, 11);
-		return dateConvert;
+		return dateConvert.slice(0, 11);
 	}
 
 	async getDatas() {
@@ -68,10 +61,8 @@ export class HistoryComponent implements OnInit {
 		let lon = this.historyCity.coord.lon;
 		this.cityName = this.historyCity.name;
 		const data = await this.service.getThings(lat, lon);
-		//console.log(data);
 		this.totalHistoryData = data;
 		this.totalHistoryData.weather = data.current.weather[0];
-		//console.log(this.totalHistoryData) ;
 		this.totalHistoryData.hourly = data.hourly;
 
 		this.totalHistoryData.daily = data.daily;
@@ -83,21 +74,14 @@ export class HistoryComponent implements OnInit {
 		for (let i = 0; i < this.totalHistoryData.hourly.length; i++) {
 			hourTemp.push((this.totalHistoryData.hourly[i]['temp'] - 273.15).toFixed(2));
 			dateConvert = new Date(this.totalHistoryData.hourly[i]['dt'] * 1000).toString();
-			//console.log(dateConvert)
 			dateConvert = dateConvert.slice(0, 4) + dateConvert.slice(17, 23);
 			time.push(dateConvert);
 		}
-		console.log(this.totalHistoryData.hourly)
-		
-			this.spinner.hide();
-		 
-
-		//  this.getGraph(time , hourTemp) ;
+		this.spinner.hide();
 	}
 
 	more() {
 		localStorage.setItem('hourly', JSON.stringify(this.totalHistoryData.hourly));
 	}
-
 
 }

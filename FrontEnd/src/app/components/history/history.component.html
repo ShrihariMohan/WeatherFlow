@@ -1,71 +1,72 @@
-<div class ="whole">
-
-  
-
-  <nav class="navbar navbar-expand-md navbar-light sticky-top" style="background-color: #f5f7fa; " >
+<div class="whole">
+  <nav class="navbar navbar-expand-md navbar-light sticky-top" style="background-color: #f5f7fa; ">
     <a class="navbar-brand nav-link" style="color:#ad5389" href="/home">WeatherFlow</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-      <ul  class="mr-auto navbar-nav navbar-center"  >      
-      <li class="nav-item active">
-        <a class="nav-link" style="color: black;" href="history#now">Now <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" style="color: black;" href="history#hourly">Hourly</a>
-      </li>
-      <li class="nav-item">
-        <a  class ="nav-link" style="color: black;" href="history#daily">Daily</a>
-      </li>
-      
-      
-    </ul>
-    
-  </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="mr-auto navbar-nav navbar-center">
+        <li class="nav-item active">
+          <a class="nav-link" style="color: black;" href="history#now">Now
+            <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: black;" href="history#hourly">Hourly</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: black;" href="history#daily">Daily</a>
+        </li>
+      </ul>
+    </div>
   </nav>
 
   <ngx-spinner></ngx-spinner>
 
-   <div class="body">
+  <div class="body">
     <div class="row" style="display: flex;
       justify-content: center;">
-      <div class="card-container col-12 col-sm-10 col-md-8 col-lg-6" id = "now">
+      <div class="card-container col-12 col-sm-10 col-md-8 col-lg-6" id="now">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">
-              Now in 
+              Now in
               <span class="designs" style="text-transform:capitalize ;"> {{cityName}} -
-                 {{totalHistoryData.weather['description']}}
+                {{totalHistoryData.weather['description']}}
               </span> </h5>
             <div style="display: flex;
               justify-content: space-around;">
               <div>
                 <span>
-                  <span class="temp card-text">{{(totalHistoryData.current['feels_like']-273.15).toFixed(2) }}°C
+                  <span class="temp card-text">
+                    {{(totalHistoryData.current['feels_like']-273.15).toFixed(2) }}°C
                   </span> <br>
                   Feels Like
                 </span>
               </div>
               <div>
-                <span >
-                  <div class="card-text" style="font-size: 150%;"> <i class="fas fa-sun"></i>  {{getSunTime(historyCity['sys'].sunrise) }} 
+                <span>
+                  <div class="card-text" style="font-size: 150%;">
+                    <i class="fas fa-sun"></i>
+                    {{getSunTime(historyCity['sys'].sunrise) }}
                   </div>
-                  <span class="card-text" style="font-size: 150%;"><i class="far fa-sun"></i>  {{getSunTime(historyCity['sys'].sunset) }} 
+                  <span class="card-text" style="font-size: 150%;">
+                    <i class="far fa-sun"></i>
+                    {{getSunTime(historyCity['sys'].sunset) }}
                   </span> <br>
-          
+
                 </span>
               </div>
             </div>
-
             <br>
             <div class="row">
               <div class="col-12 col-sm-6 col-md-6 details">
                 <p class="card-text"><i class="fas fa-thermometer-quarter hourlyIcons"></i>
                   Current
-                  <span class="designs">{{(totalHistoryData.current['temp']-273.15).toFixed(2)}}</span>°C</p>
+                  <span class="designs">
+                    {{(totalHistoryData.current['temp']-273.15).toFixed(2)}}</span>°C</p>
                 <p class="card-text"><i class="fas fa-water hourlyIcons"></i> Humidity
                   <span class="designs">{{totalHistoryData.current['humidity']}}</span>%</p>
                 <p class="card-text"> <i class="fas fa-eye hourlyIcons"></i> Visibility
@@ -74,62 +75,58 @@
                   Pressure
                   <span class="designs">{{totalHistoryData.current['pressure']}}
                   </span>atm</p>
-
               </div>
+
               <div class="col-12 col-sm-6 col-md-6 details">
-                <p class="card-text"><i class="fas fa-leaf hourlyIcons"></i> Wind Deg
+                <p class="card-text">
+                  <i class="fas fa-leaf hourlyIcons"></i> Wind Deg
                   <span class="designs">{{totalHistoryData.current['wind_deg']}}</span>°</p>
-                <p class="card-text"><i class="fas fa-wind hourlyIcons"></i> Wind Speed
+                <p class="card-text">
+                  <i class="fas fa-wind hourlyIcons"></i> Wind Speed
                   <span class="designs">{{totalHistoryData.current['wind_speed']}}</span>m/s</p>
-                <p class="card-text"><i class="fas fa-tint hourlyIcons"></i> Dew
+                <p class="card-text">
+                  <i class="fas fa-tint hourlyIcons"></i> Dew
                   <span class="designs">{{(totalHistoryData.current['dew_point']-273.15).toFixed(2)}}</span>°C</p>
-                <p class="card-text"> <i class="fas fa-1x fa-angle-down hourlyIcons"></i> UV
+                <p class="card-text">
+                  <i class="fas fa-1x fa-angle-down hourlyIcons"></i> UV
                   Index
                   <span class="designs"> {{totalHistoryData.current['uvi']}}
                   </span></p>
-
-
               </div>
             </div>
           </div>
-
-
-
         </div>
-
       </div>
     </div>
-    
+
 
     <div class="row" style="display: flex;
-      justify-content: center;" id = "hourly">
+      justify-content: center;" id="hourly">
 
-      <div class="card-container col-12 col-sm-10 col-md-8 col-lg-6" id ="hourly">
-        <div class="card" >
-          <div class="card-body" >
+      <div class="card-container col-12 col-sm-10 col-md-8 col-lg-6" id="hourly">
+        <div class="card">
+          <div class="card-body">
             <p class="card-title designs text-center"> 48 Hour Forecast</p>
-                
+
             <div *ngFor="let data of totalHistoryData.hourly | paginate: { itemsPerPage: 8, currentPage: p
             , id :'p'}">
               <div style="display: flex;
-                justify-content: space-between;" class = "designsHour">
-                <div class = "designsHour"><i class="fas fa-clock hourlyIcons" data-toggle="tooltip"
-                    data-placement="bottom" 
-                    title="Time"></i> {{getTime(data.dt)}}</div>
-                <div><i class="fas fa-thermometer-full hourlyIcons" data-toggle="tooltip"
-                    data-placement="bottom" title="Temperature"></i>
+                justify-content: space-between;" class="designsHour">
+                <div class="designsHour"><i class="fas fa-clock hourlyIcons" data-toggle="tooltip"
+                    data-placement="bottom" title="Time"></i> {{getTime(data.dt)}}</div>
+                <div><i class="fas fa-thermometer-full hourlyIcons" data-toggle="tooltip" data-placement="bottom"
+                    title="Temperature"></i>
                   {{(data['temp']-273.15).toFixed(2)}}°C </div>
-                <div><i class="fas fa-arrows-alt-v hourlyIcons" data-toggle="tooltip"
-                    data-placement="bottom" title="Pressure"></i>
+                <div><i class="fas fa-arrows-alt-v hourlyIcons" data-toggle="tooltip" data-placement="bottom"
+                    title="Pressure"></i>
                   {{(data['pressure']-273.15).toFixed(2)}}atm</div>
-                <div> <i class="fas fa-cloud hourlyIcons" data-toggle="tooltip"
-                    data-placement="bottom"
+                <div> <i class="fas fa-cloud hourlyIcons" data-toggle="tooltip" data-placement="bottom"
                     title="Clouds"></i> {{ data['clouds']}}% </div>
-                  </div>    
-                  <br>  
+              </div>
+              <br>
 
             </div>
-            <pagination-controls (pageChange)="p = $event" id ='p'></pagination-controls>
+            <pagination-controls (pageChange)="p = $event" id='p'></pagination-controls>
 
           </div>
         </div>
@@ -138,90 +135,66 @@
 
   </div>
   <div class="row" style="display: flex;
-    justify-content: center;" id = "daily">
+    justify-content: center;" id="daily">
 
     <div class="card-container col-12 col-sm-10 col-md-8 col-lg-6">
       <div class="card">
         <div class="card-body">
-          <p class="card-title  text-center details designs" > 8-Day Forecast</p>
+          <p class="card-title  text-center details designs"> 8-Day Forecast</p>
           <div *ngFor="let data of totalHistoryData.daily | paginate: {
             itemsPerPage: 1, currentPage: page , id:'page'}">
 
-            
+
             <div class="designsHour card-title" style="text-transform:capitalize
               ; font-weight: 600; font-size: 125%;"> {{getTimeDaily(data.dt)}} -
-              {{(data.weather[0]['description'])}}  {{data['clouds']}}%</div>
+              {{(data.weather[0]['description'])}} {{data['clouds']}}%</div>
 
             <div style="display: flex;
               justify-content: space-evenly;
               padding: 1px; " class="designsHour row ">
 
               <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                <p><i class="fas fa-coffee hourlyIcons"
-                    data-toggle="tooltip"
-                    data-placement="bottom" title="Temperature"></i>
+                <p><i class="fas fa-coffee hourlyIcons" data-toggle="tooltip" data-placement="bottom"
+                    title="Temperature"></i>
                   Morning
                   {{(data.temp['morn']-273.15).toFixed(2)}}°C </p>
 
-                <p><i class="fas fa-cookie-bite hourlyIcons"
-                    data-toggle="tooltip"
-                    data-placement="bottom" title="Temperature"></i>
+                <p><i class="fas fa-cookie-bite hourlyIcons" data-toggle="tooltip" data-placement="bottom"
+                    title="Temperature"></i>
                   Evening
                   {{(data.temp['eve']-273.15).toFixed(2)}}°C </p>
 
-                <p><i class="fas fa-moon hourlyIcons"
-                    data-toggle="tooltip"
-                    data-placement="bottom" title="Temperature"></i>
+                <p><i class="fas fa-moon hourlyIcons" data-toggle="tooltip" data-placement="bottom"
+                    title="Temperature"></i>
                   Night
                   {{(data.temp['night']-273.15).toFixed(2)}}°C </p>
-                  <p> <i class="fas fa-cloud hourlyIcons" data-toggle="tooltip"
-                    data-placement="bottom"
+                <p> <i class="fas fa-cloud hourlyIcons" data-toggle="tooltip" data-placement="bottom"
                     title="Clouds"></i>Humidity {{ data['humidity']}}% </p>
               </div>
               <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-
-                <p><i class="fas fa-arrows-alt-v hourlyIcons"
-                    data-toggle="tooltip"
-                    data-placement="bottom" title="Pressure"></i> Pressure 
+                <p><i class="fas fa-arrows-alt-v hourlyIcons" data-toggle="tooltip" data-placement="bottom"
+                    title="Pressure"></i> Pressure
                   {{(data['pressure']-273.15).toFixed(2)}}atm</p>
-                  <p><i class="fas fa-tint hourlyIcons"
-                    data-toggle="tooltip"
-                    data-placement="bottom" title="Dew Point"></i>
+                <p><i class="fas fa-tint hourlyIcons" data-toggle="tooltip" data-placement="bottom"
+                    title="Dew Point"></i>
                   Dew {{(data['dew_point']-273.15).toFixed(2)}}°C</p>
-                <p> <i class="fas fa-wind hourlyIcons" data-toggle="tooltip"
-                    data-placement="bottom"
+                <p> <i class="fas fa-wind hourlyIcons" data-toggle="tooltip" data-placement="bottom"
                     title="Wind Direction"></i> Wind Direction {{ data['wind_deg']}}° </p>
-                    <p> <i class="fas fa-water hourlyIcons" data-toggle="tooltip"
-                      data-placement="bottom"
-                      title="Wind Speed"></i> Wind Speed {{data['wind_speed']}}m/s </p>  
-                
-                    
+                <p> <i class="fas fa-water hourlyIcons" data-toggle="tooltip" data-placement="bottom"
+                    title="Wind Speed"></i> Wind Speed {{data['wind_speed']}}m/s </p>
               </div>
               <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-
-                 
               </div>
-
-             
             </div>
           </div>
           <pagination-controls (pageChange)="page= $event" id="page"></pagination-controls>
         </div>
       </div>
     </div>
-    
   </div>
-  <!-- <div id="mapid" style="width: 50%; height: 70vh; padding:0"></div> -->
-  <div class = "row" style="justify-content: center;">
-    <iframe class = "col-12 col-sm -12 col-md-7" width="520"
-    height="316"    [src] = "safeSrc" title="description"
-    frameborder="0" webkitallowfullscreen mozallowfullscreen
-      allowfullscreen></iframe>
 
-  </div> 
-
-
+  <div class="row" style="justify-content: center;">
+    <iframe class="col-12 col-sm -12 col-md-7" width="520" height="316" [src]="safeSrc" title="description"
+      frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  </div>
 </div>
-
-
-

@@ -1,11 +1,11 @@
-import { FavCity } from '../../POJO/favCity/fav-city';
 import { Injectable } from '@angular/core';
-import { User } from '../../POJO/user/user' ;
 import { Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+
+import { FavCity } from '../../POJO/favCity/fav-city';
+import { User } from '../../POJO/user/user' ;
+
 import { ToastrService } from 'ngx-toastr';
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +21,7 @@ export class RegistrationService {
     return new Promise((res, rej) => {
       this.http.post (`http://localhost:9000/login`,user,{responseType: 'text'})
       .subscribe(data => res(data)) ,
-      err => {//console.log(err + 'hello');
-       };
+      err => rej(err)
     });
 }
 
@@ -48,7 +47,6 @@ public getUserFromRemote(): Promise<any> {
 
 
   public registerUserFromRemote(user: User): Promise<any> {
-    //return this.http.post('http://localhost:9000/new', user,{responseType: 'text'}) ;
     return new Promise((res, rej) => {
       this.http.post ('http://localhost:9000/new', user,{responseType: 'text'})
       .subscribe(data => res(data) , 
@@ -58,7 +56,6 @@ public getUserFromRemote(): Promise<any> {
   }
   
   public getFavouritesFromRemote ( ): Promise<any> {
-    //return this.http.post('http://localhost:9000/new', user,{responseType: 'text'}) ;
     return new Promise((res, rej) => {
       this.http.get (`http://localhost:9000/fav/`) 
       .subscribe(data => res(data) , 
@@ -68,10 +65,7 @@ public getUserFromRemote(): Promise<any> {
     });
   }
 
-  
-
   public saveFavCityFromRemote ( city: FavCity) : Promise<any> {
-    //return this.http.post('http://localhost:9000/new', user,{responseType: 'text'}) ;
     return new Promise((res, rej) => {
       this.http.post (`http://localhost:9000/data`,city  ,{responseType: 'text'})
       .subscribe(data => res(data) , 
@@ -81,7 +75,6 @@ public getUserFromRemote(): Promise<any> {
   }
 
   public deleteCityFromRemote (id : number) : Promise<any> {
-    //return this.http.post('http://localhost:9000/new', user,{responseType: 'text'}) ;
     return new Promise((res, rej) => {
       this.http.delete (`http://localhost:9000/del/${id}` ,{responseType: 'text'})
       .subscribe(data => res(data) , 
@@ -90,18 +83,11 @@ public getUserFromRemote(): Promise<any> {
     });
   }
 
-
- 
-
-
-
   public logOutUserFromRemote( ): Promise<any> {
     return new Promise((res, rej) => {
       this.http.post (`http://localhost:9000/logout`,{responseType: 'text'})
       .subscribe(data => res(data)) ,
-      err => { //console.log(err );
-        rej("error") ;
-       };
+      err => rej("error") 
     });
-}
+  }
 }

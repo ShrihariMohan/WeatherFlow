@@ -1,3 +1,18 @@
+.body {
+  margin-left: 10%;
+  margin-right: 10%;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  justify-content: center;  
+}
+
+.row {
+  display: flex ;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-right : 0px ;
+
+}
+
 .card-container {
   display: flex ;
   flex-wrap: wrap;
@@ -6,27 +21,6 @@
   margin-top: 3px;
 }
 
-.row {
-  display: flex ;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.card {
-  margin: 5px 5px 5px 5px;
-  background-color: white;
-  
-  
-}
-div.row {
-  margin-right : 0px ;
-}
-.body {
-  margin-left: 10%;
-  margin-right: 10%;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  justify-content: center;  
-}
 .card-body {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
   transition: transform 0.2s ;
@@ -34,11 +28,15 @@ div.row {
   padding-bottom: 5px;
 
 }
-
 .card-body:hover {
-    transform: scale(1.01) ;
-    padding-bottom: 5px;
-    margin-top: 3px;
+  transform: scale(1.01) ;
+  padding-bottom: 5px;
+  margin-top: 3px;
+}
+
+.card {
+  margin: 5px 5px 5px 5px;
+  background-color: white;
 }
 
 .sun {
@@ -55,8 +53,8 @@ div.row {
 
 .clouddiv {
   margin-top: -30px ;
-
 }
+
 .clouds {
  filter : drop-shadow(1px 1px 5px #2e99e0)  ;
  color : #2e99e0 ;
@@ -66,30 +64,27 @@ div.row {
  animation-timing-function: ease-in-out;
  animation-iteration-count: infinite;
 }
+
+@keyframes cloudMovement {
+  from {margin-left :-55px ; }
+  to { margin-right :-55px ;}
+}
+
 .quiet {
   color: #9da0a1;
   font-weight: 80;
   font-size: 100%;
 }
 
-
-
- @keyframes cloudMovement {
-  from {margin-left :-55px ; }
-  to { margin-right :-55px ;}
- }
-
- .close-icon  {
+.close-icon {
   color :rgb(99, 98, 98) ;
   cursor: pointer;
 
- }
+}
 
 .heart-icon {
   cursor: pointer;
 }
-
-
 
 @media only screen and (max-width: 250px) {
   .body {
@@ -98,8 +93,8 @@ div.row {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   display: flex;
   flex-wrap: wrap;
-  /* padding: 1.25rem; */
   }
+
 }
 
 

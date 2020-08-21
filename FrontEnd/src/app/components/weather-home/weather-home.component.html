@@ -1,92 +1,81 @@
-<nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;" >
+<nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="/home">WeatherFlow</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li *ngIf = "username == null" class="nav-item active">
-        <a class="nav-link" href="/login" >Login </a>
+      <li *ngIf="username == null" class="nav-item active">
+        <a class="nav-link" href="/login">Login </a>
       </li>
-      <li *ngIf = "username == null"  class="nav-item active">
+      <li *ngIf="username == null" class="nav-item active">
         <a class="nav-link" href="/new">Register </a>
       </li>
 
-      <li *ngIf = "! (username == null)" class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <li *ngIf="! (username == null)" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           {{username}}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="nav-link" (click) = "logOut()"href ="/home" >Log out </a>         
+          <a class="nav-link" (click)="logOut()" href="/home">Log out </a>
         </div>
       </li>
-      
+
     </ul>
     <form class="form-inline" #myform="ngForm" (ngSubmit)="getWeather(data.city)">
-      <input name="Search by City" class="form-control mr-sm-2" type="search" placeholder="Search by city" aria-label="Search"
-      [(ngModel)]="data.city" required #mail ="ngModel">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" [disabled]= "!myform.form.valid">Search</button>
+      <input name="Search by City" class="form-control mr-sm-2" type="search" placeholder="Search by city"
+        aria-label="Search" [(ngModel)]="data.city" required #mail="ngModel">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" [disabled]="!myform.form.valid">Search</button>
     </form>
   </div>
 </nav>
 
-<ngx-spinner
-  ></ngx-spinner>
+<ngx-spinner></ngx-spinner>
 
-<div class ="row">
+<div class="row">
+  <div class="body">
+    <div class="card-container">
+      <div *ngFor="let data of cities" class="card text-center bg-light   mb-3">
+        <div class="card-body">
+          <i class="fa fa-times text-right close-icon" (click)="closeTheCity(data.name)" style="float: right;"
+            aria-hidden="true"></i>
 
-<div class = "body" >
-<div class="card-container">
-  
+          <div *ngIf="data.isDay">
+            <i class="fas fa-3x fa-sun sun"> </i>
+          </div>
+
+          <div *ngIf="!(data.isDay)">
+            <i class="fas fa-3x fa-moon moon"></i>
+          </div>
+
+          <div class="clouddiv">
+            <i class="fas fa-2x fa-cloud clouds"></i>
+          </div>
+
+          <h3 class="card-title" style="font-weight: 600;">{{data.name}}</h3>
+          <h4 class="card-subtitle mb-2 "> <span class="quiet"> Now </span> {{(data.main.temp - 273.15).toFixed(2)}}°C
+          </h4>
+          <h4 class="card-subtitle mb-2 "> <span class="quiet"> Feels Like
+            </span>{{(data.main.feels_like - 273.15).toFixed(2)}}°C</h4>
+          <!-- <h5 class="card-text"> Min {{(data.main.temp_min-273.15).toFixed(2)}}°C Max {{(data.main.temp_max-273.15).toFixed(2)}}°C</h5> -->
+          <h5 class="card-text"> <span class="quiet"> Humidity </span>{{(data.main.humidity)}}%</h5>
+          <h5 class="card-text"> <span class="quiet"> Visibility </span>{{(data.visibility)}} m</h5>
 
 
-  <div *ngFor ="let data of cities" class="card text-center bg-light   mb-3" >
-    <div class="card-body">
-      <i class="fa fa-times text-right close-icon"  (click) = "closeTheCity(data.name)"
-      style = "float: right;" aria-hidden="true"></i>
+          <div *ngIf="!data.isFav">
+            <i class="far fa-heart" (click)="addNewCity(data.name)" style=" color:black   ;" aria-hidden="true"> </i>
+          </div>
+          <div *ngIf="data.isFav">
+            <i class="fa fa-heart fa-1x heart-icon" (click)="removeCityFromFavs(data.name)" style=" color: red ;"
+              aria-hidden="true"> </i>
+          </div>
+          <a (click)="getGraph(data)" style=" cursor: pointer; color: orange;"> More Info </a>
 
-      <div *ngIf = "data.isDay">
-        <i  class ="fas fa-3x fa-sun sun"> </i>
+        </div>
       </div>
-
-      <div *ngIf = "!(data.isDay)">
-        <i class="fas fa-3x fa-moon moon"></i>
-      </div>
-
-      <div class ="clouddiv">
-        <i class = "fas fa-2x fa-cloud clouds"></i>
-      </div>
-
-      <h3 class="card-title" style="font-weight: 600;">{{data.name}}</h3>
-      <h4 class="card-subtitle mb-2 "> <span class ="quiet"> Now </span> {{(data.main.temp - 273.15).toFixed(2)}}°C</h4>
-      <h4 class="card-subtitle mb-2 "> <span class ="quiet"> Feels Like </span>{{(data.main.feels_like - 273.15).toFixed(2)}}°C</h4>
-      <!-- <h5 class="card-text"> Min {{(data.main.temp_min-273.15).toFixed(2)}}°C Max {{(data.main.temp_max-273.15).toFixed(2)}}°C</h5> -->
-      <h5 class="card-text"> <span class ="quiet"> Humidity </span>{{(data.main.humidity)}}%</h5>
-      <h5 class="card-text"> <span class ="quiet"> Visibility </span>{{(data.visibility)}} m</h5>
-
-
-      <div *ngIf = "!data.isFav" >
-        <i class="far fa-heart" (click) = "addNewCity(data.name)" style = " color:black   ;" aria-hidden="true"> </i>
     </div>
-      <div *ngIf = "data.isFav" >
-        <i class="fa fa-heart fa-1x heart-icon" (click)="removeCityFromFavs(data.name)" style = " color: red ;" aria-hidden="true"> </i>
-      </div>
-     <a  (click)="getGraph(data)" style=" cursor: pointer; color: orange;" > More Info </a>
-
-    </div>
-
-
-   </div>
-  </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
