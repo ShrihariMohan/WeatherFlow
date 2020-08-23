@@ -42,7 +42,6 @@ export class WeatherHomeComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.spinner.show()
     this.getLocation();
     try {
       this.username = await this.service.getUserFromRemote();

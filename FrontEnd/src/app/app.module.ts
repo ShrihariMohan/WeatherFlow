@@ -5,13 +5,14 @@ import { HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component'
 import { WeatherHomeComponent } from './components/weather-home/weather-home.component';
 import { HistoryComponent } from './components/history/history.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import {HttpRequestInterceptor} from '../app/http-request-interceptor';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import {HttpRequestInterceptor} from '../app/interceptors/http-request-interceptor';
 
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
@@ -25,6 +26,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     WeatherHomeComponent,
     HistoryComponent,
     NotFoundComponent,
+    LandingPageComponent,
   ],
 
   imports: [

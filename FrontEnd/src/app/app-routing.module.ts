@@ -6,9 +6,11 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { WeatherHomeComponent } from './components/weather-home/weather-home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AppComponent } from './components/app/app.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 const routes: Routes = [
-  { path: '', component: WeatherHomeComponent } ,
+  { path: '', component: LandingPageComponent } ,
   { path: 'home', component: WeatherHomeComponent } ,
   { path : 'new' , component: RegistrationComponent } ,
   { path: 'login', component: LoginComponent } ,

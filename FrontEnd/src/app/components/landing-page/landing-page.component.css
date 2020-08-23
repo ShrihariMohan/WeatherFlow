@@ -1,0 +1,32 @@
+
+nav {
+    font-size: 200%;
+    display: flex;
+    justify-content: space-around;
+    padding : 20px ;
+}
+nav>a {
+    text-decoration: none;
+    border: blueviolet solid 3px;
+    padding: 8px;
+    border-radius: 5px;
+    color: blueviolet;
+}
+main {
+    padding : 20px ;
+    text-align: center;
+}
+
+.row{
+    margin: 0px ;
+}
+.heading {
+    font-size: 250%;
+    font-weight: 600;
+}
+
+.subHeading {
+    font-size: 150%;
+    font-weight: 300;
+    color:#3d454e;
+}
