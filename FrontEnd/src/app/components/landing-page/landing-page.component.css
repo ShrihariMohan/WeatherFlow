@@ -1,17 +1,3 @@
-
-nav {
-    font-size: 200%;
-    display: flex;
-    justify-content: space-around;
-    padding : 20px ;
-}
-nav>a {
-    text-decoration: none;
-    border: blueviolet solid 3px;
-    padding: 8px;
-    border-radius: 5px;
-    color: blueviolet;
-}
 main {
     padding : 20px ;
     text-align: center;
@@ -19,10 +5,13 @@ main {
 
 .row{
     margin: 0px ;
+    padding : 20px ;
 }
+
 .heading {
     font-size: 250%;
     font-weight: 600;
+    color: black;
 }
 
 .subHeading {
@@ -30,3 +19,70 @@ main {
     font-weight: 300;
     color:#3d454e;
 }
+
+.card{
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+                0 5px 5px rgba(0, 0, 0, 0.22);
+    background: white;
+    padding-bottom: 5px;
+    border-radius: 7px;
+    transition: transform 0.2s ;
+    margin:8px;
+  }
+.card:hover {
+    transform: scale(1.02);
+}
+  
+img {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    padding: 0px;
+}
+
+.features {
+    font-size: 120%;
+    font-weight: 300;
+    color:#3d454e;
+}
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    user-select: none;
+}
+
+.icons {
+    padding: 3px;
+    margin: 2px;
+    cursor: pointer;
+    color: rgb(87, 83, 83);
+    transition: transform .2s; 
+}
+
+.blue:hover {
+    transform: scale(1.3);
+    color:rgb(70, 139, 230);
+}
+
+.lightblue:hover {
+    transform: scale(1.3);
+    color:rgb(20, 81, 160);
+
+}
+
+.violet:hover {
+    transform: scale(1.3);
+    color: blueviolet;
+}
+
+
+@media only screen and ( max-width:768px) {
+    .features {
+        font-size: 100%;
+        font-weight: 300;
+        color:#3d454e;
+    }
+
+}
+
+

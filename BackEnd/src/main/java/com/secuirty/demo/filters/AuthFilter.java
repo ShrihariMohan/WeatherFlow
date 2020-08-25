@@ -74,8 +74,9 @@ public class AuthFilter implements Filter {
 	              if (excludeList.contains(path) || authenticated) {
 	            	  filterchain.doFilter(request, response);
 	              } else {
-	                  res.getOutputStream().print("false");
-	              }	
+                      res.setStatus(HttpStatus.UNAUTHORIZED.value());
+                      res.getOutputStream().print("{\"error\": \"Not authorised\"}");
+	              }
               	} catch(Exception e) {
               e.printStackTrace();
           }

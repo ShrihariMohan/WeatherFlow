@@ -94,6 +94,7 @@ export class WeatherHomeComponent implements OnInit {
     try {
     const data = await this.weatherService.getWeatherData(cityName);
     this.data = data ;
+    console.log(data) ;
     this.data.isDay = data.dt < data.sys.sunset;
     this.data.isFav = isFav;
     this.cityData[`${data.name}`] = this.data;
@@ -157,7 +158,6 @@ export class WeatherHomeComponent implements OnInit {
     }
     this.favCities = data;
     if (data.length === 0 || this.already) {
-      this.toastr.warning("You don't have any favourites , to favorite one click on the fav icon ");
       this.already = false;
       return;
     }

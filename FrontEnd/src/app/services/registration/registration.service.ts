@@ -30,11 +30,12 @@ public getUserFromRemote(): Promise<any> {
   return new Promise((res, rej) => {
     this.http.get (`http://localhost:9000/name`,{responseType: 'text' })
     .subscribe(data => {
-      if ( data == "false")
       res(data) ;
      this.toastr.success(`Hello ${data.charAt(0).toUpperCase() + data.slice(1)}, You are successfully logged in` );}, 
        (data : Error) => {; 
-       console.log('') ;
+       console.log(data) ;
+       this.toastr.warning("You are not logged in");
+
        rej(data) }) 
 
   });
@@ -58,7 +59,8 @@ public getUserFromRemote(): Promise<any> {
   public getFavouritesFromRemote ( ): Promise<any> {
     return new Promise((res, rej) => {
       this.http.get (`http://localhost:9000/fav/`) 
-      .subscribe(data => res(data) , 
+      .subscribe(data =>{ 
+        console.log(data) ;res(data);} , 
       data => {rej(data.ok);
       console.log(data)}) 
      
