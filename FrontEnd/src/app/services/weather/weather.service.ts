@@ -12,7 +12,6 @@ export class WeatherService {
 
   constructor(private http: HttpClient,private toastr: ToastrService) { }
   public getThings (lat:number , lon:number ) : Promise<any> {
-    
     return new Promise((res, rej) => {
       this.http.post (`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&
       exclude=hourly,daily&appid=${this.key}`,null)
@@ -22,13 +21,11 @@ export class WeatherService {
     });
   }
 
-
-
   public getHistory ( lat:number , lon:number ,time:number) : Promise<any> {
     console.log(time) ;
     return new Promise((res, rej) => {
       this.http.post (`http://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${lon}&dt=${time}&appid=${this.key}`,null)
-      .subscribe(data => res(null)) ,
+      .subscribe(data => res(data)) ,
       err => {console.log(err);
        };
     });
@@ -48,7 +45,10 @@ export class WeatherService {
   public getCityByCoords( lat: number , lon: number): Promise<any> {
     return new Promise((res, rej) => {
       this.http.post (`https://us1.locationiq.com/v1/reverse.php?key=bd319758969d15&lat=${lat}&lon=${lon}&format=json`, null)
-      .subscribe(data => res(data) , 
+      .subscribe(data =>{ 
+        console.log(data) ;
+        res(data);
+      } , 
       data => rej(data.ok)) 
      
     });

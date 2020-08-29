@@ -17,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   user = new User() ;
   pass: string ;
   cpass: string ;
-  msg: string = ''
+  msg : string ;
   constructor(private service:RegistrationService , private router: Router ,
     private toastr: ToastrService ,  private spinner: NgxSpinnerService) { }
 

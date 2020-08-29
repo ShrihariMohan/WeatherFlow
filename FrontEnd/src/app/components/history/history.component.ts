@@ -5,8 +5,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { NgxSpinnerService } from "ngx-spinner";
 import { WeatherService } from './../../services/weather/weather.service';
 
-
-
 @Component({
 	selector: 'app-history',
 	templateUrl: './history.component.html',
@@ -15,6 +13,7 @@ import { WeatherService } from './../../services/weather/weather.service';
 export class HistoryComponent implements OnInit {
 	historyCity: Weatherdata;
 	hourlyData: any[] = [];
+	historyData : any[] = [];
 	city: string;
 	totalHistoryData = new HistoryData();
 	iconLink: string;
@@ -22,6 +21,7 @@ export class HistoryComponent implements OnInit {
 	hourlyDisplay: any;
 	p: number = 1;
 	page = 1;
+	pi = 1 ;
 	cityName: String;
 	iframe = 'anuglar 6'
   	safeSrc: SafeResourceUrl;
@@ -78,6 +78,19 @@ export class HistoryComponent implements OnInit {
 			time.push(dateConvert);
 		}
 		this.spinner.hide();
+		//console.log(this.totalHistoryData);
+		this.getHistory();
+	}
+
+	async getHistory() {
+		let lat = this.historyCity.coord.lat;
+		let lon = this.historyCity.coord.lon;
+		for ( let i = 0 ; i < 4 ; i ++) {
+		const data = await this.service.getHistory(lat , lon , (this.totalHistoryData.current['dt'])-84000*i);
+		this.historyData[i] = data ; 
+		}
+		console.log(this.historyData) ;
+
 	}
 
 	more() {
