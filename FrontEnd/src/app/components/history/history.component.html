@@ -143,8 +143,9 @@
           , id :'pi'}">
           <div class="card">
             <div class="card-body">
-              <div class = "card-title"> 
-                {{ getTime(data.current.dt)}}
+              <p class="text-center designs" style="padding:0px" > Past 5 Days Forecast</p>
+              <div class = "card-title designs text-center"> 
+                {{ getHistoryTime(data.current.dt)}}
               </div>
               <div style="display: flex;
               justify-content: space-around;">
@@ -204,7 +205,7 @@
                     </span></p>
                 </div>
               </div>
-              <pagination-controls (pageChange)="pi= $event" id="pi"></pagination-controls>
+              <pagination-controls (pageChange)="pi= $event" id="pi" class="text-center"></pagination-controls>
             </div>
           </div>
         </div>

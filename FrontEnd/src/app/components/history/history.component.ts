@@ -46,6 +46,11 @@ export class HistoryComponent implements OnInit {
 		return dateConvert.slice(0, 4) + dateConvert.slice(16, 21);
 	}
 
+	getHistoryTime(time) {
+		let dateConvert = new Date(time * 1000).toString();
+		return dateConvert.slice(0, 10) ;
+	}
+
 	getSunTime(time) {
 		let dateConvert = new Date(time * 1000).toString();
 		return dateConvert.slice(16, 21);
@@ -85,10 +90,11 @@ export class HistoryComponent implements OnInit {
 	async getHistory() {
 		let lat = this.historyCity.coord.lat;
 		let lon = this.historyCity.coord.lon;
-		for ( let i = 0 ; i < 4 ; i ++) {
+		for ( let i = 4 , ind = 0 ; i > -1 ; i -- , ind ++) {
 		const data = await this.service.getHistory(lat , lon , (this.totalHistoryData.current['dt'])-84000*i);
-		this.historyData[i] = data ; 
+		this.historyData[ind] = data ; 
 		}
+
 		console.log(this.historyData) ;
 
 	}
